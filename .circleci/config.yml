@@ -34,7 +34,7 @@ jobs:
     executor: example/default
     steps:
       - checkout
-      - example/upgrade-yarn
+      - example/install-yarn
       - example/restore-yarn-cache
       - example/install-dependencies
       - example/save-yarn-cache
