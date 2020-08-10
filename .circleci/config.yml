@@ -6,12 +6,38 @@ orbs:
       default:
         docker:
           - image: circleci/node:erbium
+  commands:
+    restore-yarn-cache:
+      steps:
+        restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+      save-yarn-cache:
+        steps:
+          save_cache:
+            key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
+            paths:
+              - ./node_modules
+      install-yarn:
+        steps:
+          run:
+            name: Upgrade yarn
+            command: |
+              sudo npm install -g -f yarn@latest
+      install-dependencies:
+        steps:
+          run:
+            name: Install dependencies
+            command: yarn install
 
 jobs:
   build:
     executor: example/default
     steps:
       - checkout
+      - example/upgrade-yarn
+      - example/restore-yarn-cache
+      - example/install-dependencies
+      - example/save-yarn-cache
 
 workflows:
     build-and-release:
