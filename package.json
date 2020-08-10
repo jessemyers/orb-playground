@@ -1,0 +1,12 @@
+{
+  "name": "orb-playground",
+  "version": "1.0.0",
+  "description": "Orb Playground",
+  "main": "index.js",
+  "repository": "git@github.com:jessemyers/orb-playground.git",
+  "author": "Jesse Myers <jesse.myers@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.19"
+  }
+}
