@@ -1,13 +1,15 @@
 version: 2.1
 
-executors:
-  default-executor:
-    docker:
-      - image: circleci/node:erbium
+orbs:
+  example:
+    executors:
+      default:
+        docker:
+          - image: circleci/node:erbium
 
 jobs:
   build:
-    executor: default-executor
+    executor: example/default
     steps:
       - checkout
 
