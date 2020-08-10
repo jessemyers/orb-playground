@@ -28,21 +28,19 @@ orbs:
           run:
             name: Install dependencies
             command: yarn install
-
-jobs:
-  build:
-    executor: example/default
-    steps:
-      - checkout
-      - example/install-yarn
-      - example/restore-yarn-cache
-      - example/install-dependencies
-      - example/save-yarn-cache
+      jobs:
+        executor: default
+        steps:
+          - checkout
+          - example/install-yarn
+          - example/restore-yarn-cache
+          - example/install-dependencies
+          - example/save-yarn-cache
 
 workflows:
     build-and-release:
       jobs:
-        - build:
+        - example/build:
             filters:
               tags:
                 only: /.*/
