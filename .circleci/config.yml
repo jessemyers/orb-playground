@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  example: polycosm/example
+  example: polycosm/example@dev
 
 workflows:
     build-and-release:
