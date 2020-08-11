@@ -1,42 +1,7 @@
 version: 2.1
 
 orbs:
-  example:
-    executors:
-      default:
-        docker:
-          - image: circleci/node:erbium
-    commands:
-      restore-yarn-cache:
-        steps:
-          - restore_cache:
-              key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
-      save-yarn-cache:
-        steps:
-          - save_cache:
-              key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "yarn.lock" }}
-              paths:
-                - ./node_modules
-      install-yarn:
-        steps:
-          - run:
-              name: Upgrade yarn
-              command: |
-                sudo npm install -g -f yarn@latest
-      install-dependencies:
-        steps:
-          - run:
-              name: Install dependencies
-              command: yarn install
-    jobs:
-      build:
-        executor: default
-        steps:
-          - checkout
-          - install-yarn
-          - restore-yarn-cache
-          - install-dependencies
-          - save-yarn-cache
+  example: polycosm/example
 
 workflows:
     build-and-release:
